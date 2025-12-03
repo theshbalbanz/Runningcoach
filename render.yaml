@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: runningcoach-api
+    env: python
+    region: frankfurt
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.app:app --host 0.0.0.0 --port 8000
+    envVars:
+      - key: GOOGLE_SERVICE_ACCOUNT_JSON
+        sync: false
+      - key: GOOGLE_DRIVE_RAW_FOLDER_ID
+        sync: false
+      - key: GOOGLE_DRIVE_PROCESSED_FOLDER_ID
+        sync: false
+      - key: GOOGLE_DRIVE_LOGS_FOLDER_ID
+        sync: false
+      - key: CRON_INTERVAL_MINUTES
+        value: "10"
